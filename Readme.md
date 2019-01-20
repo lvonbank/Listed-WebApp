@@ -77,7 +77,7 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-* Special Thanks to Jonathan Hardwick, our professor of IT484 class.
+* Special Thanks to Jonathan Hardwick, our professor of IT484 - Software Engineering class.
 
 ## Known Bugs
 
