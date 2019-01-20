@@ -1,0 +1,38 @@
+%div.container
+  - if flash[:item_errors]
+    %div#alerts
+      - flash[:item_errors].each do |msg| 
+        = msg
+      
+  %h1 Create New Item
+
+  %div#new_item_forms
+    = form_tag items_path(@user), multipart: :true, :method => :post do
+    
+      = label :item, :category, 'Category'
+      = select :item, :category, Item.all_categories
+      %br
+      
+      = label :item, :title, 'Title'
+      = text_field :item, 'title', required: true, class: "form-control"
+      %br
+      
+      = label :item, :description, 'Description'
+      = text_area :item, 'description', size: "60x12", class: "form-control"
+      %br
+      
+      = label :item, :price, 'Price'
+      = number_field :item, 'price', min: 0, step: 0.01, class: "form-control"
+      %br
+      
+      = label :item, :contact, 'Contact'
+      = text_field :item, 'contact', value: current_user.email, :readonly => true, class: "form-control"
+      %br
+      
+      = label :item, :attachments, 'Attachments'
+      = hidden_field :item, :attachments_cache
+      = file_field :item, 'attachments', accept: 'image/jpg,image/jpeg,image/gif,image/png', multiple: true
+      %br
+      
+      = submit_tag 'Post Listing', class:"btn btn-primary"
+      = link_to 'Cancel', items_path, class:"btn btn-danger"

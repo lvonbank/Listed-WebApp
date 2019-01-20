@@ -1,0 +1,73 @@
+!!!
+
+%html
+  %head
+    %title Listed
+    %link{href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", rel: "stylesheet", integrity: "sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin: "anonymous"}
+    %script{src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity: "sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin: "anonymous"}
+    %link{href:"custom.css", rel: "stylesheet", type: "text/css"}
+    = csrf_meta_tags
+    = favicon_link_tag 'favicon.ico'
+    = cloudinary_js_config
+    :css
+        html,body{
+          margin: 0;
+          padding: 0;
+        }
+        #footer{
+          height: 45px;
+          width: 100%;
+          padding: 5px; 
+          padding-left: 20%;
+          background-color: rgb(230,230,230);
+          left: 0;
+          bottom: 0;
+          position: fixed;
+          margin-top:70px;
+        }
+        #body{
+          position: relative;
+          margin-bottom: 70px;
+        }
+    
+  %body
+    %div#body
+      %nav.navbar.navbar-light{:role => "navigation", :style => "background-color: #377bb5"}
+        .navbar-header
+          %a.navbar-brand{:href => root_path}
+            %img{:alt => "", :src => "/assets/main_logo.png", width: "150", height: "25"}
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right.button.bg-primary
+            %li.active.div#google
+            - if current_user
+              Welcome, 
+              = succeed "!" do
+                %strong= current_user.name
+              %br
+              = link_to "Sign out", signout_path, id: "sign_out", class:"btn btn-warning btn-xs"
+            - else
+              %br
+              = link_to "Access with Google", "/auth/google_oauth2", id: "sign_in", class:"btn btn-default btn-xs"
+        
+      #alerts
+        - if flash[:notice]
+          #notice.message.alert.alert-info= flash[:notice]
+        - elsif flash[:warning]
+          #warning.message.alert.alert-warning= flash[:warning]
+      
+      = yield
+      
+      -# examplefooter
+  %footer
+    %div#footer
+      %div.col-xs-4
+        %span.glyphicon.glyphicon-envelope
+        listed484@gmail.com
+        %br
+        %span.glyphicon.glyphicon-pencil
+        E.Jun / L.VonBank / B.Sany / C.Fox
+      %div.col-xs-8
+        %span.glyphicon.glyphicon-file
+        © Copyright listd-blue Incorporated. All rights NOT reserved.
+        
+        

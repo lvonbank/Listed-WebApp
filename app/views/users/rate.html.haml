@@ -1,0 +1,13 @@
+%div.container
+  %h1 Rate Seller
+  
+  %div#rate_seller
+    = form_tag users_rating_path(@user), :method => :post do
+    
+      = label :user, :rating, 'Rating'
+      = select :user, :rating, [1,2,3,4,5]
+      
+      %br
+      %br
+      = submit_tag 'Submit Rating', class:"btn btn-primary"
+      = link_to 'Cancel', item_path(session[:item_id]), class:"btn btn-danger"

@@ -1,0 +1,16 @@
+%br
+%br
+%div.col-xs-12
+    %h1 Well... There is nothing there LOL
+%br
+%br
+%div.col-xs-4
+%div.container.col-xs-4
+    %div.input-group.lg
+        %span.input-group-addon
+            %i.glyphicon.glyphicon-lock
+        = password_field_tag 'secret', '', class: 'form-control'
+    %br
+    %br
+    = submit_tag 'I solemnly swear that I am up to no good.', class: "btn btn-danger"
+
